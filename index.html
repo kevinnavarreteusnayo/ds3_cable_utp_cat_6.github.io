@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
@@ -9,7 +9,7 @@
   <meta name="keywords"
     content="Cable UTP, AMP, Categoria 6, 23AWG, Chaqueta CMR, 6-1427200-4, cable red, UTP Cat6" />
   <meta name="author" content="ds3comunicaciones" />
-  <!-- tailwin cdn -->
+  <!-- tailwind cdn -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- fontawesome cdn -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -26,14 +26,438 @@
   <title>
     Cable UTP AMP Categoria 6 Chaqueta CMR 23AWG 6-1427200-4
   </title>
-</head>
 
-<body>
-  <!-- SUBMENU DE MARCA DEPENDIENDO DEL PRODUCTO -->
-  <nav class="bg-white border-b border-gray-200 shadow-md sticky top-0 z-50">
+  <!-- Inline styles para modo oscuro completo y overrides críticos.
+       Comentarios en español. -->
+  <style>
+    /* Variables claro/oscuro */
+    :root {
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --panel: #f8fafc;
+      --muted: #475569;
+      --text: #0f172a;
+      --accent: #0b66c3;
+      --border: #e6e6e6;
+      --card-shadow: 0 10px 30px rgba(2,6,23,0.06);
+      --input-bg: #ffffff;
+      --action-bg: #ffffff;
+      --action-fg: #0f172a;
+    }
+
+    /* Valores para modo oscuro: aplicables si <html> tiene clase .dark */
+    html.dark {
+      --bg: #061826;
+      --surface: #071a27;
+      --panel: rgba(255,255,255,0.02);
+      --muted: #9aa6b2;
+      --text: #e6eef8;
+      --accent: #60a5fa; /* tono azul más claro en dark */
+      --border: rgba(255,255,255,0.06);
+      --card-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      --input-bg: rgba(255,255,255,0.03);
+      --action-bg: rgba(255,255,255,0.03);
+      --action-fg: #e6eef8;
+    }
+
+    /* Base de la página */
+    html, body {
+      background-color: var(--bg) !important;
+      color: var(--text) !important;
+    }
+
+    /* Topbar */
+    .topbar {
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,250,250,0.9));
+      border-bottom: 1px solid var(--border);
+    }
+    html.dark .topbar {
+      background: linear-gradient(180deg, rgba(4,18,30,0.95), rgba(6,24,36,0.95)) !important;
+      border-bottom: 1px solid var(--border) !important;
+    }
+
+    .topbar .contact-item { color: var(--text); }
+    .topbar .phone-primary {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.075rem;
+    }
+    .topbar .contact-mini { color: var(--muted); font-size: .875rem; }
+
+    /* Forzar números y enlaces legibles en modo oscuro (regla específica para evitar conflictos con utilidades) */
+    html.dark .topbar .phone-primary,
+    html.dark .topbar .phone-primary a,
+    html.dark .topbar .contact-item,
+    html.dark .topbar .contact-item a,
+    html.dark .topbar .contact-mini {
+      color: #ffffff !important;
+    }
+    /* Si quieres que el número principal mantenga color acento, puedes usar var(--accent) en lugar de #ffffff:
+       html.dark .topbar .phone-primary { color: var(--accent) !important; } */
+
+    /* action buttons (search, dark toggle) */
+    .action-btn {
+      background: var(--action-bg);
+      color: var(--action-fg);
+      border: 1px solid var(--border);
+      height: 40px;
+      width: 40px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius: 999px;
+      box-shadow: 0 1px 2px rgba(16,24,40,0.04);
+      cursor:pointer;
+    }
+    html.dark .action-btn {
+      box-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    }
+    .action-btn:focus { outline: 3px solid rgba(11,102,195,0.15); outline-offset: 3px; }
+
+    /* Search overlay */
+    #search-overlay {
+      position: fixed;
+      inset: 0;
+      display: none;
+      z-index: 60;
+      background: rgba(0,0,0,0.35);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    #search-overlay .overlay-card {
+      width: min(1200px, 98%);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 14px;
+      box-shadow: var(--card-shadow);
+      padding: 18px;
+      border: 1px solid var(--border);
+    }
+    #search-overlay .overlay-top {
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    #search-overlay .overlay-search {
+      flex: 1;
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    #search-overlay input[type="search"]{
+      width:100%;
+      padding:10px 14px;
+      border-radius:8px;
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,250,0.95));
+      color: var(--text);
+      font-size:1rem;
+      box-shadow:none;
+    }
+    html.dark #search-overlay input[type="search"]{
+      background: var(--input-bg);
+    }
+    #search-overlay .overlay-actions { display:flex; gap:8px; align-items:center; }
+    #search-overlay .icon-grid { display:flex; gap:12px; flex-wrap:wrap; margin-top:14px; justify-content:center; }
+    #search-overlay .icon-card {
+      min-width: 160px;
+      max-width: 220px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      padding:12px 14px;
+      border-radius:10px;
+      border:1px solid rgba(241,245,249,0.8);
+      background:linear-gradient(180deg,#ffffff,#fbfdff);
+      cursor:pointer;
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+      color: var(--text);
+    }
+    html.dark #search-overlay .icon-card {
+      border:1px solid rgba(255,255,255,0.04);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    }
+    #search-overlay .icon-card:hover{
+      transform: translateY(-4px);
+      box-shadow:0 8px 20px rgba(2,6,23,0.08);
+      border-color:#bfdbfe;
+    }
+
+    /* small screens */
+    @media (max-width: 768px) {
+      .topbar .contact-group { display: none; } /* collapse contact group on small screens */
+      .topbar .mobile-contact-btn { display: inline-flex; }
+      #search-overlay .icon-grid { gap:8px; }
+      #search-overlay .icon-card { min-width: 44%; }
+    }
+
+    /* Forzar overrides en modo oscuro para utilidades de Tailwind */
+    html.dark .bg-white { background-color: var(--surface) !important; }
+    html.dark .bg-gray-50 { background-color: var(--panel) !important; }
+    html.dark .bg-blue-50 { background-color: rgba(58,160,255,0.04) !important; }
+
+    html.dark .text-gray-800, html.dark .text-gray-900, html.dark .text-slate-800 { color: var(--text) !important; }
+    html.dark .text-gray-700, html.dark .text-gray-600 { color: var(--muted) !important; }
+    html.dark .text-gray-400 { color: rgba(255,255,255,0.42) !important; }
+
+    html.dark .border-gray-200, html.dark .border-gray-100 { border-color: var(--border) !important; }
+
+    html.dark .shadow-lg, html.dark .shadow-md, html.dark .shadow-sm { box-shadow: 0 8px 20px rgba(0,0,0,0.55) !important; }
+
+    /* Inputs y sidebars */
+    html.dark input, html.dark textarea { background: var(--input-bg) !important; color: var(--text) !important; border-color: var(--border) !important; }
+    html.dark #links-sidebar { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)) !important; color: var(--text) !important; border-color: var(--border) !important; }
+
+    /* Modal de imagen */
+    html.dark #image-modal { background: rgba(0,0,0,0.85) !important; }
+
+    /* Placeholder color en modo oscuro */
+    html.dark ::placeholder { color: rgba(255,255,255,0.45) !important; }
+
+    /* Forzar visibilidad iconos FontAwesome en dark */
+    html.dark .fa, html.dark .fas, html.dark .fa-solid { color: var(--text) !important; filter: none !important; }
+
+    /* No invertir imágenes globalmente (usar opt-in con clase .invert-on-dark) */
+    html.dark .nav-icon,
+    html.dark .icon-container img,
+    html.dark .links-section img,
+    html.dark .thumbnail-wrapper img,
+    html.dark aside img,
+    html.dark .logo {
+      filter: none !important;
+      opacity: 0.98 !important;
+      background: transparent !important;
+    }
+    /* Clase opt-in: invertir sólo si se marca explícitamente */
+    html.dark img.invert-on-dark { filter: brightness(0) invert(1) contrast(1.05) !important; }
+
+    /* Asegurar miniaturas sin fondo blanco */
+    .thumbnail-wrapper img{ background:transparent !important; }
+
+    /* Forzar que tarjetas blancas se vuelvan surface en dark */
+    html.dark .relative.bg-white,
+    html.dark .rounded-xl.bg-white,
+    html.dark .group.bg-white,
+    html.dark .rounded-2xl,
+    html.dark .bg-gradient-to-br {
+      background: var(--surface) !important;
+      border-color: var(--border) !important;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6) !important;
+    }
+
+    /* Indicador de vista */
+    html.dark #current-view { color: var(--text) !important; background: rgba(255,255,255,0.06) !important; }
+
+    /* Footer contraste */
+    footer { background: linear-gradient(180deg,#f8fafc,#ffffff); color:#374151; }
+    html.dark footer { background: linear-gradient(180deg, rgba(5,16,26,0.98), rgba(6,18,30,0.98)) !important; color: var(--muted) !important; border-top: 1px solid var(--border) !important; }
+    html.dark footer a { color: var(--muted) !important; }
+
+    /* -----------------------------------------------------
+       Arreglos puntuales solicitados: números topbar y
+       "Comprar ahora" (tarjeta del precio) en modo oscuro.
+       ----------------------------------------------------- */
+
+    /* Target específico de la tarjeta de precio / compra:
+       le añadimos un ID para poder aplicar un fondo oscuro adecuado. */
+    #price-panel {
+      /* valor por defecto luz */
+    }
+    html.dark #price-panel {
+      background: linear-gradient(90deg, rgba(6,18,28,0.6), rgba(10,24,34,0.65)) !important;
+      border-color: rgba(255,255,255,0.04) !important;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6) !important;
+      color: var(--text) !important;
+    }
+    /* Color del precio principal en modo oscuro (legible, destacado) */
+    html.dark #price-panel .text-4xl {
+      color: var(--accent) !important;
+    }
+    /* Badge y textos pequeños dentro del panel */
+    html.dark #price-panel .badge,
+    html.dark #price-panel .badge-success,
+    html.dark #price-panel .text-sm {
+      color: var(--muted) !important;
+    }
+
+    /* Si el botón tiene sombra y contraste, aseguramos que el botón se destaque en dark */
+    html.dark #price-panel a.bg-blue-600 {
+      box-shadow: 0 10px 20px rgba(2,6,23,0.6) !important;
+      border: none !important;
+    }
+
+    /* Aumentar contraste del texto del breadcrumb/topbar secundario si fuera necesario */
+    html.dark .text-slate-600 { color: rgba(255,255,255,0.72) !important; }
+
+    /* Fin estilos */
+  </style>
+</head>
+<body class="antialiased text-slate-800">
+
+  <!-- NEW TOP HEADER: logo, grouped contact info, dark mode + search -->
+  <header class="topbar sticky top-0 z-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-4 py-3">
+        <!-- Left: logo -->
+        <div class="flex-shrink-0">
+          <a href="/" aria-label="DS3 Comunicaciones - inicio" class="inline-flex items-center">
+            <img src="https://www.ds3comunicaciones.com/mikrotik/images/Logo1.jpg" alt="DS3 Comunicaciones" class="h-10 w-auto rounded-sm" />
+          </a>
+        </div>
+
+        <!-- Center: Contacts (collapses on mobile) -->
+        <div class="flex-1 flex items-center justify-center">
+          <div class="contact-group flex items-center gap-6">
+            <div class="contact-item text-center">
+              <div class="phone-primary">
+                <a href="tel:+51996533223" aria-label="Llamar 99653 3223" class="no-underline phone-primary">99653‑3223</a>
+              </div>
+              <div class="contact-mini">Línea principal</div>
+            </div>
+
+            <div class="contact-item text-center hidden sm:flex flex-col">
+              <div class="text-sm font-semibold">
+                <a href="tel:+51994428965" aria-label="Llamar 994 428 965" class="no-underline text-slate-900">994‑428‑965</a>
+              </div>
+              <div class="contact-mini">Soporte</div>
+            </div>
+
+            <div class="contact-item text-center hidden sm:flex flex-col">
+              <div class="text-sm font-semibold">
+                <a href="tel:+51937514867" aria-label="Llamar 937 514 867" class="no-underline text-slate-900">937‑514‑867</a>
+              </div>
+              <div class="contact-mini">Ventas</div>
+            </div>
+
+            <div class="contact-item text-center hidden md:flex flex-col">
+              <div class="text-sm font-semibold">
+                <a href="mailto:netperu100@hotmail.com" aria-label="Enviar correo netperu100 arroba hotmail dot com" class="no-underline text-slate-900">
+                  netperu100@hotmail.com
+                </a>
+              </div>
+              <div class="contact-mini">Email</div>
+            </div>
+
+            <div class="contact-item text-center hidden md:flex flex-col">
+              <div class="text-sm font-semibold text-slate-900">
+                <a href="https://maps.google.com/?q=Lima,Peru" target="_blank" rel="noopener noreferrer" aria-label="Abrir ubicación Lima, Perú" class="no-underline text-slate-900">
+                  Lima, PERÚ
+                </a>
+              </div>
+              <div class="contact-mini">Ubicación</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: actions -->
+        <div class="flex items-center gap-3">
+          <!-- mobile contact quick button (only visible on small screens) -->
+          <a href="https://wa.me/994428965?text=Hola%20necesito%20ayuda" target="_blank" rel="noopener noreferrer"
+            class="mobile-contact-btn action-btn hidden sm:inline-flex" aria-label="Contactar por WhatsApp">
+            <i class="fab fa-whatsapp text-green-600"></i>
+          </a>
+
+          <!-- Dark mode toggle -->
+          <button id="dark-toggle" class="action-btn" aria-pressed="false" aria-label="Alternar tema oscuro">
+            <i id="dark-icon" class="fa-solid fa-moon text-slate-800"></i>
+          </button>
+
+          <!-- Search open -->
+          <button id="open-search" class="action-btn" aria-label="Buscar en el sitio" title="Buscar (tecla /)">
+            <i class="fa-solid fa-magnifying-glass text-slate-700"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SEARCH OVERLAY (improvement of the overlay shown in the screenshots) -->
+  <div id="search-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="overlay-card" role="document">
+      <div class="overlay-top">
+        <div style="flex:1" class="overlay-search">
+          <input id="overlay-search-input" type="search" placeholder="Buscar productos, marcas o códigos..." aria-label="Buscar productos marcas o códigos" />
+          <button id="overlay-search-btn" class="px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700">
+            Buscar
+          </button>
+        </div>
+        <div class="overlay-actions">
+          <button id="overlay-clear" class="px-3 py-2 rounded-md border border-gray-200 text-gray-700" aria-label="Limpiar búsqueda">Limpiar</button>
+          <button id="close-search" class="action-btn" aria-label="Cerrar búsqueda">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="icon-grid" id="overlay-icon-grid" aria-hidden="false">
+        <!-- These are the same nav items already present in the nav bar. JS will allow clicking to navigate. -->
+        <div class="icon-card" data-href="https://www.ds3comunicaciones.com/cisco/catalys_9200l.html" tabindex="0">
+          <i class="fa-solid fa-layer-group text-blue-600 fa-2x"></i>
+          <div>
+            <div class="font-semibold text-sm">Switch Catalyst</div>
+            <div class="text-xs text-slate-500">Catalyst family</div>
+          </div>
+        </div>
+
+        <div class="icon-card" data-href="https://www.ds3comunicaciones.com/cisco/bussines_sg350.html" tabindex="0">
+          <i class="fa-solid fa-building text-blue-600 fa-2x"></i>
+          <div>
+            <div class="font-semibold text-sm">Cisco Business</div>
+            <div class="text-xs text-slate-500">Small business</div>
+          </div>
+        </div>
+
+        <div class="icon-card" data-href="https://www.ds3comunicaciones.com/cisco/precios_cisco_switch_industrial_b.html" tabindex="0">
+          <i class="fa-solid fa-industry text-blue-600 fa-2x"></i>
+          <div>
+            <div class="font-semibold text-sm">Switch Industrial</div>
+            <div class="text-xs text-slate-500">Rugged</div>
+          </div>
+        </div>
+
+        <div class="icon-card" data-href="https://www.ds3comunicaciones.com/cisco/precios_cisco_access_point_b.html" tabindex="0">
+          <i class="fa-solid fa-wifi text-blue-600 fa-2x"></i>
+          <div>
+            <div class="font-semibold text-sm">Aironet</div>
+            <div class="text-xs text-slate-500">Access points</div>
+          </div>
+        </div>
+
+        <div class="icon-card" data-href="https://www.ds3comunicaciones.com/cisco/precios_cisco_telefonos_b.html" tabindex="0">
+          <i class="fa-solid fa-phone text-blue-600 fa-2x"></i>
+          <div>
+            <div class="font-semibold text-sm">Teléfono</div>
+            <div class="text-xs text-slate-500">IP Phones</div>
+          </div>
+        </div>
+
+        <div class="icon-card" data-href="https://ds3comunicaciones.com/cisco/precios_cisco_meraki_b.html" tabindex="0">
+          <i class="fa-solid fa-cloud text-blue-600 fa-2x"></i>
+          <div>
+            <div class="font-semibold text-sm">Meraki</div>
+            <div class="text-xs text-slate-500">Cloud managed</div>
+          </div>
+        </div>
+
+        <div class="icon-card" data-href="#" tabindex="0">
+          <i class="fa-solid fa-microchip text-blue-600 fa-2x"></i>
+          <div>
+            <div class="font-semibold text-sm">Transceiver</div>
+            <div class="text-xs text-slate-500">Modules</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBMENU DE MARCA DEPENDIENDO DEL PRODUCTO (existing nav improved visually but structure kept) -->
+  <nav class="bg-white border-b border-gray-200 shadow-md z-40">
     <div class="relative">
       <!-- Contenedor con scroll horizontal -->
-      <div class="nav-container flex justify-evenly overflow-x-auto md:py-3 px-4 space-x-2 scrollbar-hide">
+      <div id="brand-nav" class="nav-container flex justify-evenly overflow-x-auto md:py-3 px-4 space-x-2 scrollbar-hide">
         <!-- Item 1 -->
         <a href="https://www.ds3comunicaciones.com/cisco/catalys_9200l.html"
           class="nav-item flex items-center p-2 rounded-lg min-w-fit flex-shrink-0 space-x-2 transition-all duration-300">
@@ -118,14 +542,14 @@
         <i class="fa-solid fa-house text-[0.9em]"></i>
       </a>
       <span class="text-gray-400 flex-shrink-0"><i class="fa-solid fa-chevron-right text-[0.7em]"></i></span>
-      <a href="http://www.ds3comunicaciones.com/cisco/index.html"
+      <a href="https://www.ds3comunicaciones.com/panduit/index.html"
         class="flex-shrink-0 hover:underline hover:text-blue-600 transition font-medium">
-        Cisco
+        Panduit
       </a>
       <span class="text-gray-400 flex-shrink-0"><i class="fa-solid fa-chevron-right text-[0.7em]"></i></span>
-      <a href="http://ds3comunicaciones.com/cisco/catalyst.html"
+      <a href="https://www.ds3comunicaciones.com/panduit/index.html#cables"
         class="flex-shrink-0 hover:underline hover:text-blue-600 transition font-medium">
-        Switch Catalyst
+        Cables de Red UTP
       </a>
       <span class="text-gray-400 flex-shrink-0"><i class="fa-solid fa-chevron-right text-[0.7em]"></i></span>
       <span class="text-slate-800 font-semibold flex-shrink-0 text-blue-600">
@@ -435,7 +859,7 @@
                     <i class="fas fa-file-pdf text-red-500 text-4xl mb-4"></i>
                     <h3 class="font-bold text-gray-800 mb-2">Ficha Técnica</h3>
                     <p class="text-gray-600 text-sm mb-4">Especificaciones técnicas detalladas del producto</p>
-                    <a href="https://www.ds3comunicaciones.com/cisco/files/catalyst_9200.pdf"
+                    <a href="https://www.ds3comunicaciones.com/AMP/files/6-1427200-4-DS.pdf"
                       class="inline-flex items-center gap-2 bg-red-50 text-red-600 border border-red-200 rounded-lg px-4 py-2 hover:bg-red-100 transition-all duration-300 font-medium w-full justify-center"
                       target="_blank" rel="noopener noreferrer" aria-label="Descargar ficha técnica en PDF">
                       <i class="fas fa-download"></i>
@@ -450,7 +874,7 @@
                     <i class="fas fa-book text-blue-500 text-4xl mb-4"></i>
                     <h3 class="font-bold text-gray-800 mb-2">Manual de Usuario</h3>
                     <p class="text-gray-600 text-sm mb-4">Guía completa de instalación y configuración</p>
-                    <a href="https://web.netperu100.com/cisco/catalyst/files/Catalyst_9200_manual.pdf"
+                    <a href="https://www.panduit.com/content/dam/panduit/en/products/media/5/35/735/8735/110838735.pdf"
                       class="inline-flex items-center gap-2 bg-blue-50 text-blue-600 border border-blue-200 rounded-lg px-4 py-2 hover:bg-blue-100 transition-all duration-300 font-medium w-full justify-center"
                       target="_blank" rel="noopener noreferrer" aria-label="Descargar manual en PDF">
                       <i class="fas fa-download"></i>
@@ -465,7 +889,7 @@
                     <i class="fas fa-file-alt text-green-500 text-4xl mb-4"></i>
                     <h3 class="font-bold text-gray-800 mb-2">Especificaciones</h3>
                     <p class="text-gray-600 text-sm mb-4">Especificaciones técnicas en detalle</p>
-                    <a href="https://web.netperu100.com/cisco/catalyst/files/C9200L-24T-4G-E_esp.pdf"
+                    <a href="https://dixon-link.com/wp-content/uploads/2022/01/3060.pdf"
                       class="inline-flex items-center gap-2 bg-green-50 text-green-600 border border-green-200 rounded-lg px-4 py-2 hover:bg-green-100 transition-all duration-300 font-medium w-full justify-center"
                       target="_blank" rel="noopener noreferrer" aria-label="Descargar especificaciones en PDF">
                       <i class="fas fa-download"></i>
@@ -862,7 +1286,7 @@
         <!-- Encabezado -->
         <div class="text-center mb-8">
           <h2 class="text-2xl md:text-3xl font-bold text-white bg-[#049FD9] py-4 px-6 rounded-lg shadow-md inline-block">
-            También Disponible: Cisco Catalyst 9200 en stock
+            También Disponible en Stock
           </h2>
         </div>
 
@@ -870,23 +1294,22 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
           <!-- Producto 1 -->
-          <a href="https://web.netperu100.com/cisco/catalyst/C9200L-24P-4G-E.html"
+          <a href="https://www.ds3comunicaciones.com/panduit/PUR5504IGY.html"
             class="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-gray-200 hover:border-blue-500">
             <div class="p-5 flex flex-col h-full">
               <div class="flex-grow flex items-center justify-center mb-4 h-40">
-                <img src="https://web.netperu100.com/cisco/catalyst/images/C9200L-24P-4G-E_front.jpg"
-                  alt="Switch Cisco WS-C9200L-24P-4G-E"
+                <img src="https://www.aztecacompras.com/media/catalog/product/cache/c8d70c2554d4a168e554914d9cc673aa/1/8/186572.jpg"
+                  alt="Cable UTP Cat 5E, 4 pares, 24 AWG,PANDUIT PUR5504IGY"
                   class="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105" />
               </div>
               <div class="border-t pt-4">
                 <div class="flex justify-between flex-col items-center mb-2">
                   <h3 class="text-lg font-bold text-gray-800">
-                    C9200L-24P-4G-E
+                    Cable UTP Cat 5E PUR5504IGY
                   </h3>
                 </div>
                 <p class="text-sm text-gray-600 mt-2 group-hover:text-gray-800 transition-colors line-clamp-2">
-                   Switch Cisco Catalyst 9200L Essentials C9200L-24P, capa L3 con 24 puertos PoE+
-    (370W) Gigabit, 04 puertos para fibra SFP, Stacking hasta 08 equipos, Rackeable, CISCO C9200L-24P-4G-E
+                   Cable UTP Cat 5E, 4 pares, 24 AWG,PANDUIT PUR5504IGY
                 </p>
                 <div class="text-center mt-6 text-blue-600 font-semibold">
                   Ver Producto
@@ -895,22 +1318,22 @@
             </div>
           </a>
           <!-- Producto 2-->
-          <a href="https://web.netperu100.com/cisco/catalyst/C9200L-24T-4X-E.html"
+          <a href="https://www.ds3comunicaciones.com/panduit/PUR6004BU.html"
             class="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-gray-200 hover:border-blue-500">
             <div class="p-5 flex flex-col h-full">
               <div class="flex-grow flex items-center justify-center mb-4 h-40">
-                <img src="https://web.netperu100.com/cisco/catalyst/images/C9200L-24T-4X-E_front.jpg"
-                  alt="Switch Cisco C9200L-24T-4X-E"
+                <img src="http://www.ds3comunicaciones.com/panduit/images/PUR6004BUY_front_small.jpg"
+                  alt="Cable UTP CAT 6 PUR6004BU"
                   class="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105" />
               </div>
               <div class="border-t pt-4">
                 <div class="flex justify-between flex-col items-center mb-2">
                   <h3 class="text-lg font-bold text-gray-800">
-                    C9200L-24T-4X-E
+                    Cable UTP CAT 6 PUR6004BU
                   </h3>
                 </div>
                 <p class="text-sm text-gray-600 mt-2 group-hover:text-gray-800 transition-colors line-clamp-2">
-                   Switch Cisco Catalyst 9200L Essentials C9200L-24T, capa L3 con 24 puertos Gigabit, 04 puertos 10G para fibra SFP+, Stacking hasta 08 equipos, Rackeable, CISCO C9200L-24T-4X-E
+                   Cable UTP cat 6 de 23 AWG chaqueta CMR azul marca PANDUIT PUR6004BU
                 </p>
                 <div class="text-center mt-6 text-blue-600 font-semibold">
                   Ver Producto
@@ -920,23 +1343,22 @@
           </a>
 
           <!-- Producto 3 -->
-          <a href="https://web.netperu100.com/cisco/catalyst/C9200L-24P-4X-E.html"
+          <a href="https://www.ds3comunicaciones.com/panduit/PUR6004BUY.html"
             class="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-gray-200 hover:border-blue-500">
             <div class="p-5 flex flex-col h-full">
               <div class="flex-grow flex items-center justify-center mb-4 h-40">
-                <img src="https://web.netperu100.com/cisco/catalyst/images/C9200L-24P-4X-E_front.jpg"
-                  alt="Switch Cisco WS-C9200L-24P-4X-E"
+                <img src="https://www.ds3comunicaciones.com/panduit/images/PUR6004BUY_front_small.jpg"
+                  alt="Cable UTP cat 6 de 23 AWG chaqueta CMR azul marca PANDUIT PUR6004BUY"
                   class="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105" />
               </div>
               <div class="border-t pt-4">
                 <div class="flex justify-between flex-col items-center mb-2">
                   <h3 class="text-lg font-bold text-gray-800">
-                    C9200L-24P-4X-E
+                    Cable UTP PUR6004BUY
                   </h3>
                 </div>
                 <p class="text-sm text-gray-600 mt-2 group-hover:text-gray-800 transition-colors line-clamp-2">
-                   Switch Cisco Catalyst 9200L Essentials C9200L-24P, capa L3 con 24 puertos PoE+
-    (370W) Gigabit, 04 puertos 10G para fibra SFP+, Stacking hasta 08 equipos, Rackeable, CISCO C9200L-24P-4X-E
+                   Cable UTP cat 6 de 23 AWG chaqueta CMR azul marca PANDUIT PUR6004BUY
                 </p>
                 <div class="text-center mt-6 text-blue-600 font-semibold">
                   Ver Producto
@@ -946,22 +1368,22 @@
           </a>
 
           <!-- Producto 4 -->
-          <a href="https://web.netperu100.com/cisco/catalyst/C9200L-48T-4G-E.html"
+          <a href="https://www.ds3comunicaciones.com/panduit/PUZ6004WH.html"
             class="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-gray-200 hover:border-blue-500">
             <div class="p-5 flex flex-col h-full">
               <div class="flex-grow flex items-center justify-center mb-4 h-40">
-                <img src="https://web.netperu100.com/cisco/catalyst/images/C9200L-48T-4G-E_front.jpg"
-                  alt="Switch Cisco C9200L-48T-4G-E"
+                <img src="https://www.ds3comunicaciones.com/panduit/images/PUZ6004WH_front_small.jpg"
+                  alt="Cable UTP cat 6 de 23 AWG chaqueta CMR blanco marca PANDUIT PUZ6004WH"
                   class="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105" />
               </div>
               <div class="border-t pt-4">
                 <div class="flex justify-between flex-col items-center mb-2">
                   <h3 class="text-lg font-bold text-gray-800">
-                    C9200L-48T-4G-E
+                    Cable UTP PUZ6004WH
                   </h3>
                 </div>
                 <p class="text-sm text-gray-600 mt-2 group-hover:text-gray-800 transition-colors line-clamp-2">
-                   Switch Cisco Catalyst 9200L Essentials C9200L-48T, capa L3 con 48 puertos Gigabit, 04 puertos para fibra SFP, Stacking hasta 08 equipos, Rackeable, CISCO C9200L-48T-4G-E
+                   Cable UTP cat 6 de 23 AWG chaqueta CMR blanco marca PANDUIT PUZ6004WH
                 </p>
                 <div class="text-center mt-6 text-blue-600 font-semibold">
                   Ver Producto
@@ -971,23 +1393,22 @@
           </a>
 
           <!-- Producto 5 -->
-          <a href="https://web.netperu100.com/cisco/catalyst/C9200L-48P-4G-E.html"
+          <a href="https://www.ds3comunicaciones.com/panduit/PUZ6A04WH-EG.html"
             class="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-gray-200 hover:border-blue-500">
             <div class="p-5 flex flex-col h-full">
               <div class="flex-grow flex items-center justify-center mb-4 h-40">
-                <img src="https://web.netperu100.com/cisco/catalyst/images/C9200L-48P-4G-E_front.jpg"
+                <img src="https://www.ds3comunicaciones.com/panduit/images/PUZ6A04WH-EG_front_small.jpg"
                   alt="Switch Cisco WS-C9200L-48P-4G-E"
                   class="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105" />
               </div>
               <div class="border-t pt-4">
                 <div class="flex justify-between flex-col items-center mb-2">
                   <h3 class="text-lg font-bold text-gray-800">
-                    C9200L-48P-4G-E
+                  CABLE UTP CAT 6A LSZH-3 PUZ6A04WH-EG
                   </h3>
                 </div>
                 <p class="text-sm text-gray-600 mt-2 group-hover:text-gray-800 transition-colors line-clamp-2">
-                   Switch Cisco Catalyst 9200L Essentials C9200L-48P, capa L3 con 48 puertos PoE+
-    (740W) Gigabit, 04 puertos para fibra SFP, Stacking hasta 08 equipos, Rackeable, CISCO C9200L-48P-4G-E
+                   Cable UTP Cat 6A LSZH-3 blanco, rollo 305 metros PANDUIT PUZ6A04WH-EG
                 </p>
                 <div class="text-center mt-6 text-blue-600 font-semibold">
                   Ver Producto
@@ -996,22 +1417,22 @@
             </div>
           </a>
           <!-- Producto 6 -->
-          <a href="https://web.netperu100.com/cisco/catalyst/C9200L-48T-4X-E.html"
+          <a href="https://www.ds3comunicaciones.com/panduit/PUR6A04BU-CG.html"
             class="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-gray-200 hover:border-blue-500">
             <div class="p-5 flex flex-col h-full">
               <div class="flex-grow flex items-center justify-center mb-4 h-40">
-                <img src="https://web.netperu100.com/cisco/catalyst/images/C9200L-48T-4X-E_front.jpg"
-                  alt="Switch Cisco C9200L-48T-4X-E"
+                <img src="https://www.ds3comunicaciones.com/panduit/images/PUR6A04BU-CG_front_small.jpg"
+                  alt="Cable UTP CAT 6A PUR6A04BU-CG"
                   class="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105" />
               </div>
               <div class="border-t pt-4">
                 <div class="flex justify-between flex-col items-center mb-2">
                   <h3 class="text-lg font-bold text-gray-800">
-                    C9200L-48T-4X-E
+                    Cable UTP CAT 6A PUR6A04BU-CG
                   </h3>
                 </div>
                 <p class="text-sm text-gray-600 mt-2 group-hover:text-gray-800 transition-colors line-clamp-2">
-                   Switch Cisco Catalyst 9200L Essentials C9200L-48T, capa L3 con 48 puertos Gigabit, 04 puertos 10G para fibra SFP+, Stacking hasta 08 equipos, Rackeable, CISCO C9200L-48T-4X-E
+                   Cable UTP Cat 6A de 23 AWG apantallado CMR TX6A 10Gig azul PANDUIT PUR6A04BU-CG
                 </p>
                 <div class="text-center mt-6 text-blue-600 font-semibold">
                   Ver Producto
@@ -1087,8 +1508,180 @@
       </div>
     </div>
   </footer>
+
   <!-- CARGA DE JAVASCRIPT  SECUNDARIA-->
   <script src="./js/change_tabs.js"></script>
+
+  <!-- Inline JS implementing functionality for search overlay, dark mode and enhancements (kept inside index.html) -->
+  <script>
+    (function () {
+      // Dark mode toggle (persistent in localStorage)
+      const darkToggle = document.getElementById('dark-toggle');
+      const darkIcon = document.getElementById('dark-icon');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const stored = localStorage.getItem('ds3-dark');
+
+      function setDark(on) {
+        if (on) {
+          // Add .dark to html element only (Tailwind + our CSS read .dark on html)
+          document.documentElement.classList.add('dark');
+          darkToggle.setAttribute('aria-pressed', 'true');
+          // use solid icons to ensure visibility
+          darkIcon.className = 'fa-solid fa-sun';
+          darkIcon.style.color = '#FBBF24'; // yellow-400
+        } else {
+          document.documentElement.classList.remove('dark');
+          darkToggle.setAttribute('aria-pressed', 'false');
+          darkIcon.className = 'fa-solid fa-moon';
+          darkIcon.style.color = '';
+        }
+      }
+
+      // initialize: stored value takes precedence, otherwise follow system preference
+      if (stored === null) {
+        setDark(prefersDark);
+      } else {
+        setDark(stored === 'true');
+      }
+
+      darkToggle.addEventListener('click', function () {
+        const isDark = document.documentElement.classList.contains('dark');
+        setDark(!isDark);
+        localStorage.setItem('ds3-dark', (!isDark).toString());
+      });
+
+      // Search overlay logic
+      const openSearch = document.getElementById('open-search');
+      const searchOverlay = document.getElementById('search-overlay');
+      const closeSearch = document.getElementById('close-search');
+      const overlayInput = document.getElementById('overlay-search-input');
+      const overlayBtn = document.getElementById('overlay-search-btn');
+      const overlayClear = document.getElementById('overlay-clear');
+      const iconGrid = document.getElementById('overlay-icon-grid');
+
+      function showSearch() {
+        searchOverlay.style.display = 'flex';
+        searchOverlay.setAttribute('aria-hidden', 'false');
+        // focus input
+        setTimeout(() => overlayInput.focus(), 120);
+        // prevent body scroll
+        document.body.style.overflow = 'hidden';
+      }
+
+      function hideSearch() {
+        searchOverlay.style.display = 'none';
+        searchOverlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      openSearch.addEventListener('click', showSearch);
+      closeSearch.addEventListener('click', hideSearch);
+      overlayClear.addEventListener('click', () => {
+        overlayInput.value = '';
+        overlayInput.focus();
+        filterIconGrid('');
+      });
+
+      // Close overlay on Esc
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') hideSearch();
+        // quick open with slash
+        if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+          e.preventDefault();
+          showSearch();
+        }
+      });
+
+      // Overlay search action: simple redirect to search results page (if available) or filter the icon grid
+      overlayBtn.addEventListener('click', function () {
+        const q = overlayInput.value.trim();
+        if (!q) {
+          overlayInput.focus();
+          return;
+        }
+        // If the site has a search results page, redirect (example path); otherwise, try to filter
+        const searchUrl = '/search?q=' + encodeURIComponent(q);
+        window.location.href = searchUrl;
+      });
+
+      // Filter icon grid by input
+      overlayInput.addEventListener('input', function (e) {
+        filterIconGrid(e.target.value);
+      });
+
+      function filterIconGrid(term) {
+        term = (term || '').toLowerCase().trim();
+        const cards = iconGrid.querySelectorAll('.icon-card');
+        cards.forEach(card => {
+          const text = (card.textContent || '').toLowerCase();
+          if (!term || text.indexOf(term) !== -1) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+
+      // Make icon cards clickable + accessible (Enter key)
+      iconGrid.querySelectorAll('.icon-card').forEach(card => {
+        card.addEventListener('click', function () {
+          const href = this.getAttribute('data-href');
+          if (href && href !== '#') {
+            window.open(href, '_self');
+          }
+        });
+        card.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.click();
+          }
+        });
+      });
+
+      // Improve brand nav keyboard accessibility: allow focus and Enter navigation
+      document.querySelectorAll('#brand-nav a').forEach(a => {
+        a.setAttribute('tabindex', '0');
+        a.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') a.click();
+        });
+      });
+
+      // Small UX: clicking outside overlay-card closes overlay
+      searchOverlay.addEventListener('click', function (e) {
+        if (e.target === searchOverlay) hideSearch();
+      });
+
+      // Update current year in footer
+      const yearEl = document.getElementById('currentYear');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // "Ver más marcas" toggle (simple show/hide)
+      const verMasBtn = document.getElementById('ver-mas-marcas');
+      if (verMasBtn) {
+        verMasBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          const more = document.getElementById('more-brands');
+          if (!more) return;
+          if (more.classList.contains('hidden')) {
+            more.classList.remove('hidden');
+            verMasBtn.innerHTML = '<i class="fas fa-angle-up mr-2"></i>Ver menos';
+          } else {
+            more.classList.add('hidden');
+            verMasBtn.innerHTML = '<i class="fas fa-ellipsis-h mr-2"></i>Ver más marcas';
+          }
+        });
+      }
+
+      // Back to top
+      const backTop = document.getElementById('back-to-top');
+      if (backTop) {
+        backTop.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+    })();
+  </script>
 </body>
 
 </html>
