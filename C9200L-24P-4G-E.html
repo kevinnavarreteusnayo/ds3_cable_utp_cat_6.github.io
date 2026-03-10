@@ -17,6 +17,10 @@
   <!-- css  -->
   <link rel="stylesheet" href="./css/style.css" />
   <link rel="stylesheet" href="./css/animations.css" />
+  <style>
+    html.dark .text-black { color: white !important; }
+    html.dark .text-black a { color: white !important; }
+  </style>
   <!-- carga del navbar (defer para evitar problemas de ejecución antes del DOM) -->
   <script src="./js/nav.js" defer></script>
   <!-- Scripts de interactividad -->
@@ -29,8 +33,461 @@ Cable UTP AMP Categoría 6 — Chaqueta CMR — Código 6-1427200-4 | DS3 Comuni
 </head>
 
 <body class="antialiased">
+  <!-- Navbar principal -->
+  <nav class="bg-white w-full shadow-md border sticky top-0 z-50" role="navigation" aria-label="Main navigation">
+    <div class="container mx-auto px-4">
+      <!-- Desktop Navbar -->
+      <div class="hidden lg:flex justify-between items-center py-4">
+        <!-- Logo y nombre -->
+        <div class="flex items-center">
+          <img
+            src="https://www.ds3comunicaciones.com/mikrotik/images/Logo1.jpg"
+            alt="NetPeru Logo"
+            class="h-12 mr-3"
+          />
+        </div>
+
+        <!-- Info de contacto -->
+        <div class="flex space-x-8 text-black">
+          <div class="flex items-center">
+            <i class="fas fa-phone-alt mr-2 text-black "></i>
+            <div>
+              <p class="text-sm font-bold"><a href="tel:+515334339">533-4339</a></p>
+              <p class="text-sm font-bold"><a href="tel:+51994428965">994-428-965</a></p>
+            </div>
+          </div>
+          <div class="flex items-center">
+            <i class="fas fa-phone-alt mr-2 text-black "></i>
+            <div>
+              <p class="text-sm font-bold"><a href="tel:+51996533223">99653-3223</a></p>
+              <p class="text-sm font-bold"><a href="tel:+51937514867">937-514-867</a></p>
+            </div>
+          </div>
+          <div class="flex items-center">
+            <i class="fas fa-envelope mr-2 text-black "></i>
+            <span class="text-sm font-bold"><a href="mailto:netperu100@hotmail.com">netperu100@hotmail.com</a></span>
+          </div>
+          <div class="flex items-center">
+            <i class="fas fa-map-marker-alt mr-2 text-black "></i>
+            <span class="text-sm font-bold"><a href="https://www.google.com/maps?q=Lima,+PERÚ" target="_blank">Lima, PERÚ</a></span>
+          </div>
+          <div>
+            <img src="https://www.ds3comunicaciones.com/cisco/images/cisco-gif.gif" alt="cisco" class="h-10" />
+          </div>
+        </div>
+
+        <!-- Botón de búsqueda -->
+        <div class="flex items-center">
+          <!-- Theme toggle -->
+          <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 transition-colors ml-2 theme-toggle" aria-pressed="false" aria-label="Alternar modo oscuro">
+            <i class="fas fa-moon text-black" aria-hidden="true"></i>
+          </button>
+
+          <button
+            id="search-button"
+            class="p-2 rounded-full hover:bg-gray-100 transition-colors"
+          >
+            <i class="fas fa-search text-black"></i>
+          </button>
+
+          <a href="https://wa.me/51994428965?text=Hola,%20me%20gustaría%20información%20sobre%20sus%20productos" target="_blank" class="p-2 rounded-full hover:bg-gray-100 transition-colors">
+            <i class="fab fa-whatsapp text-green-500"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Mobile Navbar -->
+      <div class="lg:hidden flex flex-col gap-2">
+        <!-- navbar superior  -->
+        <div class="flex justify-between items-center py-2">
+          <!-- div izquierdo -->
+          <div class="flex gap-1">
+            <!-- boton hamburgesa -->
+            <button
+              id="mobile-menu-button"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+              aria-label="Abrir menú móvil"
+              class="p-3 rounded-full hover:bg-gray-300 transition-colors border-2 border-gray-600"
+            >
+              <i class="fas fa-bars text-black" aria-hidden="true"></i>
+            </button>
+
+            <!-- Logo -->
+            <div class="flex items-center gap-2">
+              <img
+                src="https://www.ds3comunicaciones.com/mikrotik/images/Logo1.jpg"
+                alt="NetPeru Logo"
+                class="h-10"
+              />
+              <img
+                src="https://www.ds3comunicaciones.com/cisco/images/logo-cisco.gif"
+                alt="NetPeru Logo"
+                class="h-10"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <!-- Botones buscar -->
+          <button
+            id="mobile-search-button"
+            class="p-3 rounded-md hover:bg-gray-300 transition-colors border border-black flex gap-3 items-center"
+          >
+            <i class="fas fa-search text-black"></i>
+          </button>
+          <button id="mobile-theme-toggle" class="p-3 rounded-md hover:bg-gray-300 transition-colors border border-black flex items-center theme-toggle" aria-pressed="false" aria-label="Alternar modo oscuro">
+            <i class="fas fa-moon text-black" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <!-- nabvar inferior -->
+        <div class="py-2 pl-3">
+          <div class="flex items-start">
+            <i class="fas fa-phone-alt mt-1 mr-1 text-black"></i>
+            <p class="">996533223</p>
+            <i class="pl-4 fas fa-phone-alt mt-1 mr-1 text-black"></i>
+            <p class="">994428965</p>
+          </div>
+          <div class="flex items-center">
+            <i class="fas fa-envelope mr-1 text-black"></i>
+            <span>netperu100@hotmail.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menú móvil desplegable - Lado derecho -->
+      <div
+      id="mobile-menu"
+      class="fixed top-0 left-0 h-screen w-80 bg-white shadow-xl z-60 transform -translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto"
+      role="dialog" aria-modal="true" aria-label="Menú móvil"
+    >
+      <!-- Botón de cerrar -->
+        <div class="flex justify-end p-4">
+        <button id="close-menu" aria-label="Cerrar menú" class="text-gray-500 hover:text-gray-700">
+          <i class="fas fa-times text-2xl" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <!-- Header del menú móvil -->
+      <div class="px-4 pb-4 border-b border-gray-200">
+        <div class="flex items-center justify-between">
+          <img
+            src="https://www.ds3comunicaciones.com/mikrotik/images/Logo1.jpg"
+            alt="NetPeru Logo"
+            class="h-10"
+          />
+          <div class="text-right text-black">
+            <div class="flex items-center mb-1">
+              <i class="fas fa-phone-alt mr-1 text-xs"></i>
+              <span class="text-xs font-bold"><a href="tel:+515334339">533-4339</a></span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-envelope mr-1 text-xs"></i>
+              <span class="text-xs font-bold"><a href="mailto:netperu100@hotmail.com">netperu100@hotmail.com</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenido del menú -->
+      <div class="px-6 pb-8">
+        <!-- Enlaces adicionales -->
+        <div class="">
+          <div class="flex flex-wrap justify-start gap-2">
+            <!-- Enlaces principales -->
+            <a
+              href="https://ds3comunicaciones.com/cisco/precios_cisco_b.html"
+              class="menu-link border-b w-full block py-2 font-medium text-blue-500 hover:text-blue-600 transition-colors duration-200 text-sm md:text-base"
+            >
+              Lista Completa
+            </a>
+
+            <a
+              href="http://ds3comunicaciones.com/cisco/precios_cisco_access_point_b.html"
+              class="menu-link border-b w-full block py-2 font-medium text-blue-500 hover:text-blue-600 transition-colors duration-200 text-sm md:text-base"
+            >
+              Access Point
+            </a>
+
+            <a
+              href="http://ds3comunicaciones.com/cisco/precios_cisco_switch_small_bussines_b.html"
+              class="menu-link border-b w-full block py-2 font-medium text-blue-500 hover:text-blue-600 transition-colors duration-200 text-sm md:text-base"
+            >
+              Switch Small Business
+            </a>
+
+            <a
+              href="http://ds3comunicaciones.com/cisco/precios_cisco_switch_catalyst_b.html"
+              class="menu-link border-b w-full block py-2 font-medium text-blue-500 hover:text-blue-600 transition-colors duration-200 text-sm md:text-base"
+            >
+              Switch Catalyst
+            </a>
+
+            <a
+              href="http://ds3comunicaciones.com/cisco/precios_cisco_meraki_b.html"
+              class="menu-link border-b w-full block py-2 font-medium text-blue-500 hover:text-blue-600 transition-colors duration-200 text-sm md:text-base"
+            >
+              Cisco Meraki
+            </a>
+
+            <a
+              href="http://ds3comunicaciones.com/cisco/precios_cisco_nexus_b.html"
+              class="menu-link border-b w-full block py-2 font-medium text-blue-500 hover:text-blue-600 transition-colors duration-200 text-sm md:text-base"
+            >
+              Cisco Nexus
+            </a>
+
+            <a
+              href="http://ds3comunicaciones.com/cisco/precios_cisco_router_b.html"
+              class="menu-link border-b w-full block py-2 font-medium text-blue-500 hover:text-blue-600 transition-colors duration-200 text-sm md:text-base"
+            >
+              Routers
+            </a>
+
+            <!-- Segunda fila -->
+            <a
+              href="http://ds3comunicaciones.com/cisco/precios_cisco_telefonos_b.html"
+              class="menu-link border-b w-full block py-2 font-medium text-blue-500 hover:text-blue-600 transition-colors duration-200 text-sm md:text-base"
+            >
+              Teléfonos Cisco
+            </a>
+
+            <a
+              href="http://ds3comunicaciones.com/cisco/precios_cisco_modulo_transceiver_fibra_b.html"
+              class="menu-link border-b w-full block py-2 font-medium text-blue-500 hover:text-blue-600 transition-colors duration-200 text-sm md:text-base"
+            >
+              Módulo/Transceiver de Fibra
+            </a>
+
+            <a
+              href="http://ds3comunicaciones.com/cisco/precios_cisco_accesorios_b.html"
+              class="menu-link border-b w-full block py-2 font-medium text-blue-500 hover:text-blue-600 transition-colors duration-200 text-sm md:text-base"
+            >
+              Accesorios
+            </a>
+
+            <a
+              href="http://ds3comunicaciones.com/cisco/precios_cisco_switch_industrial_b.html"
+              class="menu-link border-b w-full block py-2 font-medium text-blue-500 hover:text-blue-600 transition-colors duration-200 text-sm md:text-base"
+            >
+              Switch Industrial
+            </a>
+          </div>
+        </div>
+
+        <!-- Lista de precios (desplegable) -->
+        <div class="">
+          <details class="group">
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none py-3 border-b"
+            >
+              <span class="font-bold text-gray-800">Lista de Precios</span>
+              <i
+                class="fas fa-chevron-down text-gray-500 group-open:rotate-180 transition-transform"
+              ></i>
+            </summary>
+            <div class="mt-2">
+              <ul class="flex flex-col gap-2">
+                <!-- AMP -->
+                <li class="hover:bg-blue-50 rounded transition-colors">
+                  <a
+                    href="https://www.ds3comunicaciones.com/AMP/precios_amp.html"
+                    target="_blank"
+                    class="block px-3 py-1.5 text-sm text-blue-600 hover:underline font-medium"
+                  >
+                    Lista de precios AMP
+                  </a>
+                </li>
+
+                <!-- Amphenol -->
+                <li class="hover:bg-blue-50 rounded transition-colors">
+                  <a
+                    href="https://www.ds3comunicaciones.com/amphenol/precios_amphenol.html"
+                    target="_blank"
+                    class="block px-3 py-1.5 text-sm text-blue-600 hover:underline font-medium"
+                  >
+                    Lista de precios Amphenol
+                  </a>
+                </li>
+
+                <!-- Andrew -->
+                <li class="hover:bg-blue-50 rounded transition-colors">
+                  <a
+                    href="https://www.ds3comunicaciones.com/andrew/precios_andrew.html"
+                    target="_blank"
+                    class="block px-3 py-1.5 text-sm text-blue-600 hover:underline font-medium"
+                  >
+                    Lista de precios Andrew
+                  </a>
+                </li>
+
+                <!-- APC -->
+                <li class="hover:bg-blue-50 rounded transition-colors">
+                  <a
+                    href="https://www.ds3comunicaciones.com/apc/precios_apc.html"
+                    target="_blank"
+                    class="block px-3 py-1.5 text-sm text-blue-600 hover:underline font-medium"
+                  >
+                    Lista de precios APC
+                  </a>
+                </li>
+
+                <!-- CISCO -->
+                <li class="hover:bg-blue-50 rounded transition-colors">
+                  <a
+                    href="https://www.ds3comunicaciones.com/cisco/precios_cisco.html"
+                    target="_blank"
+                    class="block px-3 py-1.5 text-sm text-blue-600 hover:underline font-medium"
+                  >
+                    Lista de precios CISCO
+                  </a>
+                </li>
+
+                <!-- D-Link -->
+                <li class="hover:bg-blue-50 rounded transition-colors">
+                  <a
+                    href="https://www.ds3comunicaciones.com/dlink/precios_dlink.html"
+                    target="_blank"
+                    class="block px-3 py-1.5 text-sm text-blue-600 hover:underline font-medium"
+                  >
+                    Lista de precios D-Link
+                  </a>
+                </li>
+
+                <!-- Dixon -->
+                <li class="hover:bg-blue-50 rounded transition-colors">
+                  <a
+                    href="https://www.ds3comunicaciones.com/dixon/precios_dixon.html"
+                    target="_blank"
+                    class="block px-3 py-1.5 text-sm text-blue-600 hover:underline font-medium"
+                  >
+                    Lista de precios Dixon
+                  </a>
+                </li>
+
+                <!-- Energit -->
+                <li class="hover:bg-blue-50 rounded transition-colors">
+                  <a
+                    href="https://www.ds3comunicaciones.com/Energit/precios_energit.html"
+                    target="_blank"
+                    class="block px-3 py-1.5 text-sm text-blue-600 hover:underline font-medium"
+                  >
+                    Lista de precios Energit
+                  </a>
+                </li>
+
+                <!-- Fibra -->
+                <li class="hover:bg-blue-50 rounded transition-colors">
+                  <a
+                    href="https://www.ds3comunicaciones.com/FibreFab/precios_fibrefab.html"
+                    target="_blank"
+                    class="block px-3 py-1.5 text-sm text-blue-600 hover:underline font-medium"
+                  >
+                    Lista de precios Fibra
+                  </a>
+                </li>
+
+                <!-- HP -->
+                <li class="hover:bg-blue-50 rounded transition-colors">
+                  <a
+                    href="https://www.ds3comunicaciones.com/hp/precios_hp.html"
+                    target="_blank"
+                    class="block px-3 py-1.5 text-sm text-blue-600 hover:underline font-medium"
+                  >
+                    Lista de precios HP
+                  </a>
+                </li>
+
+                <!-- Mikrotik -->
+                <li class="hover:bg-blue-50 rounded transition-colors">
+                  <a
+                    href="https://www.ds3comunicaciones.com/mikrotik/precios_mikrotik.html"
+                    target="_blank"
+                    class="block px-3 py-1.5 text-sm text-blue-600 hover:underline font-medium"
+                  >
+                    Lista de precios Mikrotik
+                  </a>
+                </li>
+
+                <!-- Nexxt Solutions -->
+                <li class="hover:bg-blue-50 rounded transition-colors">
+                  <a
+                    href="https://www.ds3comunicaciones.com/nexxt_solutions/precios_nexxt_solutions.html"
+                    target="_blank"
+                    class="block px-3 py-1.5 text-sm text-blue-600 hover:underline font-medium"
+                  >
+                    Lista de precios Nexxt Solutions
+                  </a>
+                </li>
+
+                <!-- Panduit -->
+                <li class="hover:bg-blue-50 rounded transition-colors">
+                  <a
+                    href="https://www.ds3comunicaciones.com/panduit/precios_panduit.html"
+                    target="_blank"
+                    class="block px-3 py-1.5 text-sm text-blue-600 hover:underline font-medium"
+                  >
+                    Lista de precios Panduit
+                  </a>
+                </li>
+
+                <!-- Siemon -->
+                <li class="hover:bg-blue-50 rounded transition-colors">
+                  <a
+                    href="https://www.ds3comunicaciones.com/siemon/precios_siemon.html"
+                    target="_blank"
+                    class="block px-3 py-1.5 text-sm text-blue-600 hover:underline font-medium"
+                  >
+                    Lista de precios Siemon
+                  </a>
+                </li>
+
+                <!-- Teldor -->
+                <li class="hover:bg-blue-50 rounded transition-colors">
+                  <a
+                    href="https://www.ds3comunicaciones.com/Teldor/precios_teldor.html"
+                    target="_blank"
+                    class="block px-3 py-1.5 text-sm text-blue-600 hover:underline font-medium"
+                  >
+                    Lista de precios Teldor
+                  </a>
+                </li>
+
+                <!-- TRENDnet -->
+                <li class="hover:bg-blue-50 rounded transition-colors">
+                  <a
+                    href="https://www.ds3comunicaciones.com/trendnet/precios_trendnet.html"
+                    target="_blank"
+                    class="block px-3 py-1.5 text-sm text-blue-600 hover:underline font-medium"
+                  >
+                    Lista de precios TRENDnet
+                  </a>
+                </li>
+
+                <!-- Ubiquiti -->
+                <li class="hover:bg-blue-50 rounded transition-colors">
+                  <a
+                    href="https://www.ds3comunicaciones.com/ubiquiti/precios_ubiquiti.html"
+                    target="_blank"
+                    class="block px-3 py-1.5 text-sm text-blue-600 hover:underline font-medium"
+                  >
+                    Lista de precios Ubiquiti
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Overlay para el menú móvil -->
+  <div id="menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+
   <!-- SUBMENU DE MARCA DEPENDIENDO DEL PRODUCTO -->
-  <nav class="bg-white border-b border-gray-200 shadow-md sticky top-0 z-50">
     <div class="relative">
       <!-- Contenedor con scroll horizontal -->
       <div class="nav-container flex justify-evenly overflow-x-auto md:py-3 px-4 space-x-2 scrollbar-hide">

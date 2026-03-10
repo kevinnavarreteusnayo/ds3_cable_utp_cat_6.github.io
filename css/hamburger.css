@@ -1,0 +1,43 @@
+/* Icono hamburguesa (3 líneas) */
+.hamburger-lines {
+  width: 22px;
+  height: 16px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger-lines > span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: #0f172a;
+  border-radius: 9999px;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+/* Hover desktop: abrir el menú y overlay (solo cuando hay hover disponible) */
+@media (hover: hover) and (pointer: fine) {
+  nav:has(#mobile-menu-button:hover) #mobile-menu,
+  nav:has(#mobile-menu:hover) #mobile-menu {
+    transform: translateX(0) !important;
+  }
+
+  nav:has(#mobile-menu-button:hover) #menu-overlay,
+  nav:has(#mobile-menu:hover) #menu-overlay {
+    display: block !important;
+  }
+}
+
+/* Utilidad para ocultar elementos solo visualmente (accesible) */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}

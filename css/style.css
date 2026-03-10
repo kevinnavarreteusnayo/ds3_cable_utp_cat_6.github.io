@@ -357,8 +357,26 @@ html.theme-transition, html.theme-transition * {
   scrollbar-gutter: stable;
 }
 
+/* Panel menú móvil: ancho según la palabra más larga (fit/max-content),
+   sin exceder el viewport en móviles */
+.mobile-menu-panel {
+  width: max-content;
+  max-width: min(92vw, 420px);
+  min-width: 240px;
+  white-space: nowrap;
+}
+
+/* En pantallas muy pequeñas, permitir que el texto rompa línea para no desbordar */
+@media (max-width: 380px) {
+  .mobile-menu-panel {
+    width: 92vw;
+    min-width: 0;
+    white-space: normal;
+  }
+}
+
 #mobile-menu {
-  width: 100vw;
+  width: auto;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
