@@ -1,15 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Cargar el navbar
-    fetch('./components/navbar.html')
-        .then(response => response.text())
-        .then(data => {
-            document.body.insertAdjacentHTML('afterbegin', data);
-            initializeNavbar();
-            initializeMobileMenu();
-            initializeSearchModal();
-            addDynamicStyles();
-        })
-        .catch(error => console.error('Error loading navbar:', error));
+    // La navbar ya está incluida en el HTML principal, solo inicializamos funciones
+    initializeNavbar();
+    initializeMobileMenu();
+    initializeSearchModal();
+    addDynamicStyles();
 });
 
 function initializeNavbar() {
