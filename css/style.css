@@ -358,9 +358,9 @@ html.theme-transition, html.theme-transition * {
 }
 
 #mobile-menu {
-  width: min(90vw, 360px);
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+  width: 100vw;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 #menu-overlay {
